@@ -1,0 +1,171 @@
+/* Background image is property of Life is Strange 2, developed by Dontnod Entertainment and produced by Square Enix. */
+/* General */
+
+.App {
+    height: 100%;
+    margin: 0;
+}
+
+.App {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    background-image: url(images/background.jpg);
+    background-color: black;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+}
+
+.mid-button {
+    border: none;
+    border-radius: 2px;
+    padding: .5rem;
+    width: 6rem;
+    box-shadow: inset -1px -1px 1px 0px rgb(95, 95, 95);
+}
+
+#small-button {
+    position: absolute;
+    right: 25%;
+    border: none;
+    border-radius: 2px;
+    text-align: center;
+    box-shadow: inset -1px -1px 1px 0px rgb(95, 95, 95);
+}
+
+.button {
+    background-color: #323232;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    padding: .5rem;
+    width: 6rem;
+    box-shadow: inset -1px -1px 1px 0px rgb(95, 95, 95);
+}
+
+.button:hover {
+    background-color: black;
+}
+
+.content {
+    padding: 0;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+#about-me-content {
+    padding: 0;
+    margin-top: 4%;
+    margin-left: 25%;
+    margin-right: 10%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    text-align: left;
+    color: white;
+    text-shadow: 2px 2px black;
+}
+
+/* Navigation */
+
+.nav-bar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.nav-link {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    text-decoration: none;
+    float: left;
+}
+
+.nav-link:hover {
+    text-decoration-line: underline;
+}
+
+/* Add Message */
+
+.form-label {
+    color: white;
+    font-weight: bold;
+    padding-bottom: 5px;
+    text-shadow: 1px 1px black;
+}
+
+.form-item {
+    font-size: 14px;
+    margin-top: 0;
+    background-color: rgba(255, 255, 255, 0.75);
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: .2rem;
+    border: 1px solid rgb(95, 95, 95); 
+}
+
+#new-msg {
+    resize: none;
+}
+
+/* Message Board */
+
+#msg-list {
+    list-style-type: none;
+    margin-right: 0;
+    padding: 0;
+}
+
+.msg {
+    word-wrap: break-word;
+    border: 1px solid #e2e2e2;
+    font-style: italic;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.555);
+    z-index: 1;
+}
+
+.msg:hover {
+    background-color: white;
+}
+
+/* About Me */
+.highlight-text {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.text {
+    color: white;
+    text-align: right;
+    overflow: hidden;
+}
+
+.link {
+    color: white;
+}
+
+.link:visited {
+    color: lightyellow;
+}
+
+#links {
+    list-style: none;
+}
+
+#pic-block {
+    text-align: right;
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from './Nav';
 import MessageForm from './MessageForm';
 import MessageBoard from './MessageBoard';
-import styles from '../App.css';
+import styles from '../style.css';
 
 function App() {
   return (

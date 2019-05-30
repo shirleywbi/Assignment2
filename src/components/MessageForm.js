@@ -4,17 +4,19 @@ import { connect } from 'react-redux';
 
 class MessageForm extends React.Component {
     render() {
-        return(<div>
-            <h2 id="msg-header" class="header">MESSAGE</h2>
-            <label class="form-label">
-                Name
-                <input id="name" type="text" class="form-item"></input>
-            </label>
-            <div>
+        return(
+        <div id="add-msg-block" class="content">
+            <form id="add-msg-form" onsubmit="return false">
+                <h2 id="msg-header" class="header">MESSAGE</h2>
+                <label class="form-label">
+                    Name
+                    <input id="name" type="text" class="form-item"/>
+                </label>
                 <textarea id="new-msg" class="form-item" rows="5" cols="70" placeholder="Enter your message"></textarea>
-            </div>
-            <Button label="Add"/>
-            <Button label="Clear"/>
+                <br />
+                <Button label="Add" onClick="addNewMessage();"/>
+                <Button label="Clear" onClick="clearForm();"/>
+            </form>
         </div>);
     }
 }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class Button extends React.Component {
     render() {
         return (
-            <button>{this.props.label}</button>
+            <button className="button" onClick={this.props.action}>{this.props.label}</button>
         );
     }
 }
