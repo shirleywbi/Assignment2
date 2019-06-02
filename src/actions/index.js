@@ -1,3 +1,4 @@
+// form actions
 export const clearForm = () => {
 	return {
 		type: 'CLEAR_FORM'
@@ -18,6 +19,7 @@ export const updateMessage = (event) => {
 	}
 }
 
+// message actions
 export const addMessage = (name, text, index) => {
 	return {
 		type: 'ADD_MESSAGE',
@@ -41,5 +43,13 @@ export const deleteAllMessage = () => {
 export const toggleDetailedMessage = () => {
 	return {
 		type: 'TOGGLE_MESSAGE'
+	}
+}
+
+//sidebar actions
+export const selectMessage = (name, message, index) => {
+	return {
+		type: 'SELECT_MESSAGE',
+		payload: { name, message, index }
 	}
 }

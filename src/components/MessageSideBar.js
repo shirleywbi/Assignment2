@@ -12,4 +12,8 @@ class MessageSideBar extends React.Component {
     }
 }
 
-export default connect()(MessageSideBar);
+const mapStateToProps = (state) => {
+    return state;
+}
+
+export default connect(mapStateToProps)(MessageSideBar);
