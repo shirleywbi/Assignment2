@@ -34,13 +34,13 @@ export default function messageReducer(state = initialState, action) {
             newState.messages = state.messages.concat({
                 name: newName,
                 text: action.payload.text,
-                index: state.index + 1
+                index: action.payload.index + 1
             });
             return newState;
         case 'DELETE_MESSAGE':
             newState = Object.assign({}, state);
             newState.messages = state.messages.slice(0);
-            newState.messages.splice(action.payload.index, 1);
+            newState.messages.splice(action.payload, 1);
             return newState;
         case 'DELETE_ALL': 
             return { messages: [], index: 0 };
