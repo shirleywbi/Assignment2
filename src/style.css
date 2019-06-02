@@ -1,12 +1,12 @@
 /* Background image is property of Life is Strange 2, developed by Dontnod Entertainment and produced by Square Enix. */
 /* General */
 
-.App {
+html, body {
     height: 100%;
     margin: 0;
 }
 
-.App {
+body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14px;
     background-image: url(images/background.jpg);
@@ -27,12 +27,15 @@
 }
 
 #small-button {
+    background-color: #323232;
+    color: white;
     position: absolute;
     right: 25%;
     border: none;
     border-radius: 2px;
     text-align: center;
     box-shadow: inset -1px -1px 1px 0px rgb(95, 95, 95);
+    margin: 5px;
 }
 
 .button {
@@ -40,8 +43,6 @@
     color: white;
     border: none;
     border-radius: 2px;
-    padding: .5rem;
-    width: 6rem;
     box-shadow: inset -1px -1px 1px 0px rgb(95, 95, 95);
 }
 
@@ -133,6 +134,7 @@ a {
     margin-top: 1rem;
     margin-bottom: 1rem;
     padding: 1rem;
+    padding-right: 2rem;
     text-decoration: none;
     background-color: rgba(255, 255, 255, 0.555);
     z-index: 1;

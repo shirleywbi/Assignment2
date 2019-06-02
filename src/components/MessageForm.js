@@ -1,24 +1,34 @@
 import React from 'react';
-import Button from './Button';
 import { connect } from 'react-redux';
+import { addMessage, clearForm } from '../actions/index.js';
 
 class MessageForm extends React.Component {
+    addMessage() {
+        this.props.dispatch(addMessage(this.props.name, this.props.text, this.props.index));
+    }
+    clearForm() {
+        this.props.dispatch(clearForm());
+    }
     render() {
         return(
-        <div id="add-msg-block" class="content">
-            <form id="add-msg-form" onsubmit="return false">
-                <h2 id="msg-header" class="header">MESSAGE</h2>
-                <label class="form-label">
+        <div id="add-msg-block" className="content">
+            <form id="add-msg-form" onSubmit={(e) => {e.preventDefault();}}>
+                <h2 id="msg-header" className="header">MESSAGE</h2>
+                <label className="form-label">
                     Name
-                    <input id="name" type="text" class="form-item"/>
+                    <input id="name" type="text" className="form-item"/>
                 </label>
-                <textarea id="new-msg" class="form-item" rows="5" cols="70" placeholder="Enter your message"></textarea>
+                <textarea id="new-msg" className="form-item" rows="5" cols="70" placeholder="Enter your message"></textarea>
                 <br />
-                <Button label="Add" onClick="addNewMessage();"/>
-                <Button label="Clear" onClick="clearForm();"/>
+                <button className="mid-button button" onClick={this.addMessage.bind(this)}>Add</button>
+                <button className="mid-button button" onClick={this.clearForm.bind(this)}>Clear</button>
             </form>
         </div>);
     }
 }
 
-export default connect()(MessageForm);
+const mapStateToProps = (state) => {
+    return state;
+}
+
+export default connect(mapStateToProps)(MessageForm);

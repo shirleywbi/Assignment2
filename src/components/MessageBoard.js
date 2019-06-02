@@ -1,16 +1,26 @@
 import React from 'react';
-import Button from './Button';
 import Message from './Message';
 import { connect } from 'react-redux';
 
+import { deleteAllMessage } from '../actions/index.js';
+
 class MessageBoard extends React.Component {
+    // This needs to be connected to the state somehow
+
+    deleteAllMessage() {
+        this.props.dispatch(deleteAllMessage());
+    }
+
     render() {
+        const { messages } = this.props.messages;
+        const mappedMessages = messages.map(message => <Message name={ message.name } text={ message.text } index={ message.index }/>);
+
         return (
-        <div id="msg-block content">
+        <div id="msg-block">
             <div className="content">
                 <h2 id="msg-board-header" className="header">MESSAGE BOARD</h2>
-                <Button label="Clear All" onclick="clearAll();"/>
-                <ul id="msg-list"></ul>
+                <button className='mid-button button' onClick={this.deleteAllMessage.bind(this)}>Clear All</button>
+                <ul id="msg-list">{ mappedMessages }</ul>
             </div>
         </div>
         );
@@ -18,7 +28,7 @@ class MessageBoard extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { messages: state.messages };
+    return state;
 }
 
-export default connect()(MessageBoard);
+export default connect(mapStateToProps)(MessageBoard);
