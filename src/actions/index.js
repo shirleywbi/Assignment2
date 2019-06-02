@@ -6,14 +6,14 @@ export const clearForm = () => {
 
 export const updateName = (event) => {
 	return {
-		type: 'UPDATE_MESSAGE',
+		type: 'UPDATE_NAME',
 		payload: event.target.value
 	}
 }
 
 export const updateMessage = (event) => {
 	return {
-		type: 'UPDATE_NAME',
+		type: 'UPDATE_MESSAGE',
 		payload: event.target.value
 	}
 }

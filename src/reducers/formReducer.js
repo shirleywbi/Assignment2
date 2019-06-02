@@ -9,7 +9,7 @@ export default function formReducer(state = initialState, action) {
         case 'UPDATE_NAME':
             return Object.assign({}, state, state.name = action.payload);
         case 'UPDATE_MESSAGE':
-            return Object.assign({}, state, state.name = action.payload);
+            return Object.assign({}, state, state.message = action.payload);
         default: 
             return state;
     }
