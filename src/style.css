@@ -145,7 +145,7 @@ a {
 }
 
 /* Sidebar */
-#sidebar {
+.sidebar {
     position: absolute;
     height: 100%;
     width: 18%;  
@@ -154,6 +154,10 @@ a {
     background-color: rgba(255, 255, 255, 0.555);
     padding: 1rem;
 }
+
+/* .sidebar[hidden=true] {
+    display: none;
+} */
 
 /* About Me */
 .highlight-text {

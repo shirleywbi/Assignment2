@@ -8,7 +8,7 @@ export default class Nav extends React.Component {
                 <ul className="nav-bar">
                     <li className="nav-list"><a className="nav-link" href="main.html">Home</a></li>
                     {/* <li className="nav-list nav-link"><Link to="/">Home</Link></li>
-                    <li className="nav-list nav-link"><Link to="/about/">About</Link></li> */} */}
+                    <li className="nav-list nav-link"><Link to="/about/">About</Link></li> */}
                 </ul>
             </Router>
         </div>

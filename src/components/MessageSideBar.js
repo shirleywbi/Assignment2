@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 class MessageSideBar extends React.Component {
     render() {
         return (
-            <div className="slideable" id="sidebar">
-                <p>Name: {this.props.name}</p>
-                <p>Message: {this.props.message}</p>
+            <div className="sidebar">
+                <p> <b>Name:</b> </p>
+                <p> {this.props.name} </p>
+                <p> <b>Message: </b></p>
+                <p> {this.props.message}</p>
             </div>
         );
     }

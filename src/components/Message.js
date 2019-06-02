@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteMessage, selectMessage } from '../actions/index.js'
-import MessageSideBar from './MessageSideBar.js';
 
 class Message extends React.Component {
     render() {
@@ -11,7 +10,6 @@ class Message extends React.Component {
                         onClick={() => {this.props.deleteMessage(this.props.index);}}>x</button>
                 <div>{this.props.name} says: "{this.props.text}"</div>
             </li>
-            <MessageSideBar hidden={this.props.popup.hidden} name={this.props.popup.name} message={this.props.popup.message}/>
         </div>
         );
     }
