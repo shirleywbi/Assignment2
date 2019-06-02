@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 
-import messages from "./messageReducer.js";
-import form from "./formReducer.js";
+import messageReducer from "./messageReducer.js";
+import formReducer from "./formReducer.js";
 
 
 export default combineReducers({
-    messages, form
+    messages: messageReducer,
+    form: formReducer
 });

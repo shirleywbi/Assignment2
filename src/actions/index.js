@@ -1,7 +1,20 @@
-export const clearForm = (text) => {
+export const clearForm = () => {
 	return {
-		type: 'CLEAR_FORM',
-		payload: text
+		type: 'CLEAR_FORM'
+	}
+}
+
+export const updateName = (event) => {
+	return {
+		type: 'UPDATE_MESSAGE',
+		payload: event.target.value
+	}
+}
+
+export const updateMessage = (event) => {
+	return {
+		type: 'UPDATE_NAME',
+		payload: event.target.value
 	}
 }
 
@@ -22,5 +35,11 @@ export const deleteMessage = index => {
 export const deleteAllMessage = () => {
 	return {
 		type: 'DELETE_ALL'
+	}
+}
+
+export const toggleDetailedMessage = () => {
+	return {
+		type: 'TOGGLE_MESSAGE'
 	}
 }
