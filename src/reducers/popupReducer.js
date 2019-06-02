@@ -1,4 +1,4 @@
-const initialState = { hidden: true, name: "", message: "" }
+const initialState = { hidden: true, name: "", date: "", message: "", index: -1 }
 
 export default function popupReducer(state = initialState, action) {
     let newState;
@@ -10,7 +10,11 @@ export default function popupReducer(state = initialState, action) {
                 newState = Object.assign({}, state, state.hidden = false); 
             }
             newState.name = action.payload.name;
+            newState.date = action.payload.date;
             newState.message = action.payload.message;
+            return newState;
+        case 'DELETE_ALL':
+            newState = Object.assign({}, state, state.hidden = true);
             return newState;
         default:
             return state;

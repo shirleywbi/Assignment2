@@ -7,7 +7,7 @@ import MessageSideBar from './MessageSideBar.js';
 class MessageBoard extends React.Component {
     render() {
         const { messages } = this.props.messages;
-        const mappedMessages = messages.map(message => <Message name={ message.name } text={ message.text } index={ message.index }/>);
+        const mappedMessages = messages.map(message => <Message name={ message.name } date={ message.date } text={ message.text } index={ message.index }/>);
 
         return (
         <div id="msg-block">
@@ -16,7 +16,8 @@ class MessageBoard extends React.Component {
                 <button className='mid-button button' onClick={() => this.props.deleteAllMessage()}>Clear All</button>
                 <ul id="msg-list">{ mappedMessages }</ul>
             </div>
-            {!this.props.popup.hidden && <MessageSideBar hidden={this.props.popup.hidden} name={this.props.popup.name} message={this.props.popup.message}/>}
+            {!this.props.popup.hidden && <MessageSideBar hidden={this.props.popup.hidden} name={this.props.popup.name} 
+            message={this.props.popup.message} date={this.props.popup.date} index={this.props.popup.index} />}
         </div>
         );
     }

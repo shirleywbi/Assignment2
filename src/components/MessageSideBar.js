@@ -7,6 +7,8 @@ class MessageSideBar extends React.Component {
             <div className="sidebar">
                 <p> <b>Name:</b> </p>
                 <p> {this.props.name} </p>
+                <p> <b>Date: </b></p>
+                <p> {this.props.date} </p>
                 <p> <b>Message: </b></p>
                 <p> {this.props.message}</p>
             </div>

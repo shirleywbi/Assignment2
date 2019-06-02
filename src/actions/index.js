@@ -47,9 +47,9 @@ export const toggleDetailedMessage = () => {
 }
 
 //sidebar actions
-export const selectMessage = (name, message, index) => {
+export const selectMessage = (name, date, message, index) => {
 	return {
 		type: 'SELECT_MESSAGE',
-		payload: { name, message, index }
+		payload: { name, date, message, index }
 	}
 }
