@@ -36,6 +36,7 @@ export default function messageReducer(state = initialState, action) {
                 text: action.payload.text,
                 index: action.payload.index + 1
             });
+            newState.index = state.index + 1
             return newState;
         case 'DELETE_MESSAGE':
             newState = Object.assign({}, state);
