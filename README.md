@@ -1,3 +1,13 @@
+# Message Log Website 2.0
+### *Tech Stack: React, Redux, JSX, CSS*
+- Add: Logs the message entered into the text area in the message board
+- Clear: Clears the message in the text area
+- Clear All: Removes all items on message board
+- X: Clicking the x within the message will remove the message from the board
+- Name: If name is entered, will produce message saying: Name says: "Text"; if empty, will show as Anonymous.
+- Message: If a message is clicked, a side bar will appear with message details
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
