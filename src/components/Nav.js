@@ -1,17 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Home from './HomePage';
+import AboutPage from './About';
 
-export default class Nav extends React.Component {
-    render() {
-        return(<div>
-            <Router>
-                <ul className="nav-bar">
-                    <li className="nav-list"><a className="nav-link" href="main.html">Home</a></li>
-                    {/* <li className="nav-list nav-link"><Link to="/">Home</Link></li>
-                    <li className="nav-list nav-link"><Link to="/about/">About</Link></li> */}
-                </ul>
-            </Router>
-        </div>
-        );
-    }
+function AppRouter() {
+    return(
+        <Router>
+            <div>
+                <nav>
+                    <ul className="nav-bar">
+                        <li className="nav-link"><Link to="/">Home</Link></li>
+                        {/* <li className="nav-link"><Link to="/about/">About</Link></li> */}
+                    </ul>
+                </nav>
+                <Route path="/" exact component={Home} />
+                <Route path="/about/" component={AboutPage} />
+            </div>
+        </Router>
+    );
 }
+
+export default AppRouter;
