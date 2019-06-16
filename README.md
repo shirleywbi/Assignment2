@@ -10,6 +10,9 @@
 ### References and Resources:
 How to add Express backend to a React app
 https://www.freecodecamp.org/news/create-a-react-frontend-a-node-express-backend-and-connect-them-together-c5798926047c/
+
+Creating Actions for Fetching Posts
+https://redux.js.org/advanced/async-actions#async-action-creators
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
