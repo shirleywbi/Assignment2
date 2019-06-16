@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-let messages = [
+const messages = [
         {
             name: 'Rick',
             text: 'We\'re no strangers to love. You know the rules and so do I. ' +
