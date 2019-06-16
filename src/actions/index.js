@@ -1,5 +1,4 @@
 // Reference: https://redux.js.org/advanced/async-actions#async-action-creators
-import fetch from 'cross-fetch';
 
 // Constants
 export const formConstants = {

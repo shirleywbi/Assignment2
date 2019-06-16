@@ -5,9 +5,9 @@ import { deleteMessage, selectMessage } from '../actions/index.js'
 class Message extends React.Component {
     render() {
         return (<div>
-            <li className="msg" onClick={() => this.props.selectMessage(this.props.name, this.props.date, this.props.text, this.props.index)}> 
+            <li className="msg" onClick={() => this.props.selectMessage(this.props.name, this.props.date, this.props.text, this.props.key)}> 
                 <button className="small-button" id="small-button" 
-                        onClick={() => {this.props.deleteMessage(this.props.index);}}>x</button>
+                        onClick={() => {this.props.deleteMessage(this.props.key);}}>x</button>
                 <div>{this.props.name} says: "{this.props.text}"</div>
             </li>
         </div>

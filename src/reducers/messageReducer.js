@@ -2,11 +2,14 @@ import { messageConstants, fetchConstants } from '../actions/index.js';
 
 const initialMessageState = [];
 
-// function findIndex(array, index) {
-//     for (let msg in array) {
-//         if (array[msg].index === index) return msg;
-//     }
-// }
+function getNextIndex(state) {
+    if (state == []) {
+        return 0;
+    } else {
+        console.log(state);
+        return state[state.length-1].index + 1;
+    }
+}
 
 export default function messageReducer(state = initialMessageState, action) {
     let newState;
@@ -19,23 +22,20 @@ export default function messageReducer(state = initialMessageState, action) {
             const min = new Date().getMinutes();
             const sec = new Date().getSeconds();
             const newName = action.payload.name === "" ? "Anonymous" : action.payload.name;
-            newState = Object.assign({}, state);
-            newState.messages = state.messages.concat({
+            newState = state.slice(0);
+            newState = state.concat({
                 name: newName,
                 text: action.payload.text,
                 date: month + '/' + date + '/' + year + ' ' + hours + ':' + min + ':' + sec,
-                index: action.payload.index + 1
+                index: getNextIndex(state)
             });
-            newState.index = state.index + 1
             return newState;
         case messageConstants.DELETE_MESSAGE:
-            // newState = Object.assign({}, state);
-            // newState.messages = state.messages.slice(0);
-            // const index = findIndex(newState.messages, action.payload);
-            // newState.messages.splice(index, 1);
+            newState = state.slice(0);
+            newState.splice(action.payload, 1);
             return newState;
         case messageConstants.DELETE_ALL: 
-            return { messages: [], index: 0 };
+            return [];
         default: 
             return state;    
     }
