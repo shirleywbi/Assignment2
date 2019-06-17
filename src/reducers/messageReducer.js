@@ -6,12 +6,12 @@ const initialState = {
     error: false
 };
 
-function getNextIndex(state) {
-    if (state == []) {
+function getNextKey(state) {
+    if (state === []) {
         return 0;
     } else {
         console.log(state);
-        return state[state.length-1].index + 1;
+        return state[state.length-1].key + 1;
     }
 }
 
@@ -40,21 +40,25 @@ export default function messageReducer(state = initialState, action) {
             const min = new Date().getMinutes();
             const sec = new Date().getSeconds();
             const newName = action.payload.name === "" ? "Anonymous" : action.payload.name;
-            newState = state.slice(0);
-            newState = state.concat({
+            console.log(state);
+            newState = Object.assign({}, state);
+            newState.messages = state.messages.slice(0);
+            newState.messages = state.messages.concat({
                 name: newName,
                 text: action.payload.text,
                 date: month + '/' + date + '/' + year + ' ' + hours + ':' + min + ':' + sec,
-                index: getNextIndex(state)
+                key: getNextKey(state)
             });
             return newState;
         case messageConstants.DELETE_MESSAGE:
-            newState = state.slice(0);
-            newState.splice(action.payload, 1);
+            newState = Object.assign({}, state);
+            newState.messages = state.messages.slice(0);
+            newState.messages.splice(action.payload, 1);
             return newState;
         case messageConstants.DELETE_ALL: 
-            return [];
-
+            newState = Object.assign({}, state);
+            newState.messages = [];
+            return newState;
         default:
             return state;
     }

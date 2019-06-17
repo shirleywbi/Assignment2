@@ -1,4 +1,4 @@
-const initialState = { hidden: true, name: "", date: "", message: "", index: -1 }
+const initialState = { hidden: true, name: "", date: "", message: "", key: -1 }
 
 export default function popupReducer(state = initialState, action) {
     let newState;

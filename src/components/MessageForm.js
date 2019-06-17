@@ -15,7 +15,7 @@ class MessageForm extends React.Component {
                 <textarea id="text" className="form-item" rows="5" cols="70" placeholder="Enter your message" value={this.props.formStore.message} 
                           onChange={(e) => this.props.updateMessage(e)}></textarea>
                 <br />
-                <button className="mid-button button" onClick={() => this.props.addMessage(this.props.formStore.name, this.props.formStore.message, this.props.messages.index)}>Add</button>
+                <button className="mid-button button" onClick={() => this.props.addMessage(this.props.formStore.name, this.props.formStore.message)}>Add</button>
                 <button className="mid-button button" onClick={() => this.props.clearForm()}>Clear</button>
             </form>
         </div>);

@@ -18,7 +18,7 @@ class MessageBoard extends React.Component {
         } else if (loading) {
             output = "Loading...";
         } else if (messages !== []) {
-            output = messages.map(message => <Message name={ message.name } date={ message.date } text={ message.text } key={ message.index }/>);
+            output = messages.map(message => <Message name={ message.name } date={ message.date } text={ message.text } key={ message.key }/>);
         }
         return (
         <div id="msg-block">
@@ -28,7 +28,7 @@ class MessageBoard extends React.Component {
                 <ul id="msg-list">{ output }</ul>
             </div>
             {!this.props.popupStore.hidden && <MessageSideBar hidden={this.props.popupStore.hidden} name={this.props.popupStore.name} 
-            message={this.props.popupStore.message} date={this.props.popupStore.date} index={this.props.popupStore.index} />}
+            message={this.props.popupStore.message} date={this.props.popupStore.date} key={this.props.popupStore.key} />}
         </div>
         );
     }

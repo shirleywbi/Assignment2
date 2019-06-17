@@ -45,17 +45,17 @@ export const updateMessage = (event) => {
 }
 
 // Message actions
-export const addMessage = (name, text, index) => {
+export const addMessage = (name, text) => {
 	return {
 		type: messageConstants.ADD_MESSAGE,
-		payload: { name, text, index }
+		payload: { name, text }
 	}
 }
 
-export const deleteMessage = index => {
+export const deleteMessage = key => {
 	return {
 		type: messageConstants.DELETE_MESSAGE,
-		payload: index
+		payload: key
 	}
 }
 
@@ -72,10 +72,10 @@ export const toggleDetailedMessage = () => {
 }
 
 // Sidebar actions
-export const selectMessage = (name, date, message, index) => {
+export const selectMessage = (name, date, message, key) => {
 	return {
 		type: messageConstants.SELECT_MESSAGE,
-		payload: { name, date, message, index }
+		payload: { name, date, message, key }
 	}
 }
 
