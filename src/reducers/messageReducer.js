@@ -10,8 +10,7 @@ function getNextKey(state) {
     if (state === []) {
         return 0;
     } else {
-        console.log(state);
-        return state[state.length-1].key + 1;
+        return state.messages[state.messages.length-1].key + 1;
     }
 }
 
