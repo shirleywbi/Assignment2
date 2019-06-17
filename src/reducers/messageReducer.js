@@ -27,17 +27,18 @@ export default function messageReducer(state = initialState, action) {
             newState = Object.assign({}, state);
             newState.messages = state.messages.slice(0);
             newState.messages = state.messages.concat(action.payload);
-            console.log(action.payload);
-            console.log(newState);
+            newState.loading = false;
             return newState;
         case messageConstants.DELETE_MESSAGE:
             newState = Object.assign({}, state);
             newState.messages = state.messages.slice(0);
             newState.messages.splice(action.payload, 1);
+            newState.loading = false;
             return newState;
         case messageConstants.DELETE_ALL: 
             newState = Object.assign({}, state);
             newState.messages = [];
+            newState.loading = false;
             return newState;
         default:
             return state;

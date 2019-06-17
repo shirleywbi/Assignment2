@@ -59,7 +59,7 @@ export const deleteMessage = key => {
 	}
 }
 
-export const deleteAllMessage = () => {
+export const clearAll = () => {
 	return {
 		type: messageConstants.DELETE_ALL
 	}
@@ -117,20 +117,24 @@ export function postMessage(name, text) {
 			.then(res => res.json())
 			.then(res => {
 				dispatch(addMessage(res));
-				// console.log(res);
-				// return res;
 			})
-			// .then(res => addMessage(res))
 			.catch(err => dispatch(fetchMessageFailure(err)));
 	};
 }
 
-// export function deleteMessages() {
-// 	return dispatch => {
-// 		dispatch(fetchMessageRequest());
-// 		return fetch()
-// 	}
-// }
+export function deleteMessages() {
+	return dispatch => {
+		dispatch(fetchMessageRequest());
+		return fetch("http://localhost:9000/messages/", {
+			method: 'delete'
+		})
+			// .then(handleErrors)
+			.then(() => {
+				dispatch(clearAll());
+			})
+			.catch(err => dispatch(fetchMessageFailure(err)));
+	};
+}
 
 // To handle HTTP errors
 const handleErrors = (response) => {

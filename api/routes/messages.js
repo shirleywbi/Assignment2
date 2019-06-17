@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const messages = [
+let messages = [
         {
             name: 'Rick',
             text: 'We\'re no strangers to love. You know the rules and so do I. ' +
@@ -58,9 +58,10 @@ router.delete('/:id', function(req, res, next) {
     res.json(messages);
 });
 
-// DELETE ALL message
+// DELETE ALL messages
 router.delete('/', function(req, res, next) {
     messages = [];
+    console.log(messages);
     res.json(messages);
 });
 
