@@ -6,7 +6,7 @@ import MessageSideBar from './MessageSideBar.js';
 
 class MessageBoard extends React.Component {
     componentDidMount() {
-        this.props.dispatch(fetchMessages());
+        this.props.fetchMessages();
     }
 
     render() {
@@ -38,6 +38,4 @@ const mapStateToProps = (state) => {
     return state;
 }
 
-// TODO: { deleteAllMessage } cannot be dispatched through this method, else above won't work
-// Once you get it working, see if you can just call this.props.fetchMessage(); and include dispatch below
-export default connect(mapStateToProps)(MessageBoard);
+export default connect(mapStateToProps, { deleteAllMessage, fetchMessages })(MessageBoard);
