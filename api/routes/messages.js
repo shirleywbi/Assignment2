@@ -53,7 +53,14 @@ router.post('/', function(req, res, next) {
 
 // DELETE message
 router.delete('/:id', function(req, res, next) {
-    let index = req.body;
+    let key = req.params.id;
+    let index;
+    for (let i=0; i < messages.length; i++) {
+        if (messages[i].key === key) {
+            index = i;
+            break;
+        }
+    }
     messages.splice(index, 1);
     res.json(messages);
 });
@@ -61,7 +68,6 @@ router.delete('/:id', function(req, res, next) {
 // DELETE ALL messages
 router.delete('/', function(req, res, next) {
     messages = [];
-    console.log(messages);
     res.json(messages);
 });
 

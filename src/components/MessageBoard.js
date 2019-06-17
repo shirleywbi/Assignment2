@@ -13,7 +13,7 @@ class MessageBoard extends React.Component {
         const { error, loading, messages } = this.props.messageStore;
         let output = null;
         if (error) {
-            output = <div>Error.</div>;
+            output = <div>Error</div>;
         } else if (messages === [] && loading) {
             output = <div>Loading...</div>;
         } else if (messages !== []) {

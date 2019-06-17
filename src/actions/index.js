@@ -52,7 +52,7 @@ export const addMessage = (msg) => {
 	}
 }
 
-export const deleteMessage = key => {
+export const clearOne = (key) => {
 	return {
 		type: messageConstants.DELETE_MESSAGE,
 		payload: key
@@ -79,8 +79,7 @@ export const selectMessage = (name, date, message, key) => {
 	}
 }
 
-// Fetch Actions
-// Get Messages:
+// Server Actions
 export function getMessages() {
 	return dispatch => {
 		dispatch(fetchMessageRequest());
@@ -122,13 +121,31 @@ export function postMessage(name, text) {
 	};
 }
 
+export function deleteMessage(key) {
+	return dispatch => {
+		dispatch(fetchMessageRequest());
+		return fetch("http://localhost:9000/messages/:id", {
+			method: 'delete',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+			.then(handleErrors)
+			.then(res => res.json())
+			.then(res => {
+				dispatch(clearOne(res));
+			})
+			.catch(err => dispatch(fetchMessageFailure(err)));
+	};
+}
+
 export function deleteMessages() {
 	return dispatch => {
 		dispatch(fetchMessageRequest());
 		return fetch("http://localhost:9000/messages/", {
 			method: 'delete'
 		})
-			// .then(handleErrors)
+			.then(handleErrors)
 			.then(() => {
 				dispatch(clearAll());
 			})
