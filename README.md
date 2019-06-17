@@ -13,6 +13,7 @@ https://www.freecodecamp.org/news/create-a-react-frontend-a-node-express-backend
 
 Creating Actions for Fetching Posts
 https://redux.js.org/advanced/async-actions#async-action-creators
+https://daveceddia.com/where-fetch-data-redux/
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

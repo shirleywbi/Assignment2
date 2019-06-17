@@ -6,7 +6,7 @@ import popupReducer from "./popupReducer.js";
 
 
 export default combineReducers({
-    messages: messageReducer,
-    form: formReducer,
-    popup: popupReducer
+    messageStore: messageReducer,
+    formStore: formReducer,
+    popupStore: popupReducer
 });

@@ -1,4 +1,6 @@
-// Reference: https://redux.js.org/advanced/async-actions#async-action-creators
+// Reference: 
+// https://redux.js.org/advanced/async-actions#async-action-creators
+// https://daveceddia.com/where-fetch-data-redux/
 
 // Constants
 export const formConstants = {
@@ -16,9 +18,9 @@ export const messageConstants = {
 };
 
 export const fetchConstants = {
-	FETCH_POST_REQUEST: 'FETCH_POST_REQUEST',
-	FETCH_POSTS_SUCCESS: 'FETCH_POSTS_SUCCESS',
-	FETCH_POSTS_FAILURE: 'FETCH_POSTS_FAILURE'
+	FETCH_MESSAGES_REQUEST: 'FETCH_MESSAGES_REQUEST',
+	FETCH_MESSAGES_SUCCESS: 'FETCH_MESSAGES_SUCCESS',
+	FETCH_MESSAGES_FAILURE: 'FETCH_MESSAGES_FAILURE'
 };
 
 // Form actions
@@ -78,22 +80,45 @@ export const selectMessage = (name, date, message, index) => {
 }
 
 // Fetch actions
-export const getMessage = () => {
+export function fetchMessages() {
+	return dispatch => {
+		dispatch(fetchMessageRequest());
+		return fetch("http://localhost:9000/messages")
+			.then(handleErrors)
+			.then(res => res.json())
+			.then(res => {
+				dispatch(fetchMessageSuccess(res));
+				return res;
+			})
+			.catch(err => dispatch(fetchMessageFailure(err)));
+	};
+}
+
+// To handle HTTP errors
+const handleErrors = (response) => {
+	if (!response.ok) {
+		throw Error(response.statusText);
+	}
+	return response;
+}
+
+export const fetchMessageRequest = () => {
 	return {
-		type: fetchConstants.FETCH_POST_REQUEST
+		type: fetchConstants.FETCH_MESSAGES_REQUEST
 	}
 }
 
-export const getMessageSuccess = (response) => {
+export const fetchMessageSuccess = (messages) => {
 	return {
-		type: fetchConstants.FETCH_POSTS_SUCCESS,
-		payload: response
+		type: fetchConstants.FETCH_MESSAGES_SUCCESS,
+		payload: { messages }
 	}
 }
 
-export const getMessageFailure = (err) => {
+export const fetchMessageFailure = (err) => {
 	return {
-		type: fetchConstants.FETCH_POSTS_FAILURE,
-		error: err
+		type: fetchConstants.FETCH_MESSAGES_FAILURE,
+		error: { err }
 	}
 }
+
