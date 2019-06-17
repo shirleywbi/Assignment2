@@ -6,14 +6,14 @@ let messages = [
             name: 'Rick',
             text: 'We\'re no strangers to love. You know the rules and so do I. ' +
             'A full commitment\'s what I\'m thinking of. You wouldn\'t get this from any other guy.',
-            date: "6/2/2019 11:45:00",
-            key: "622019114500"
+            date: "6/2/2019 11:45:11",
+            id: "622019114511"
         },
         {
             name: 'Richard',
             text: 'I just wanna tell you how I\'m feeling... Gotta make you understand...',
             date: "6/2/2019 11:45:30",
-            key: "622019114530"
+            id: "622019114530"
         },
         {
             name: 'Paul',
@@ -21,13 +21,13 @@ let messages = [
             'Never gonna run around and desert you. Never gonna make you cry. ' +
             'Never gonna say goodbye.',
             date: "6/2/2019 11:50:00",
-            key: "622019115000"
+            id: "622019115000"
         },
         {
             name: 'Rick Astley',
             text: 'Never gonna tell a lie and hurt you.',
-            date: "6/3/2019 9:45:00",
-            key: "63201994500"
+            date: "6/3/2019 9:45:04",
+            id: "63201994504"
         }];
 
 // GET messages
@@ -39,7 +39,7 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
     let id = req.params.id;
     let message = messages.filter(msg => {
-        return (msg.key).toString() === id;
+        return msg.id === id;
     });
     res.json(message);
 });
@@ -53,10 +53,10 @@ router.post('/', function(req, res, next) {
 
 // DELETE message
 router.delete('/:id', function(req, res, next) {
-    let key = req.params.id;
+    let id = req.params.id;
     let index;
     for (let i=0; i < messages.length; i++) {
-        if (messages[i].key === key) {
+        if (messages[i].id === id) {
             index = i;
             break;
         }

@@ -52,10 +52,10 @@ export const addMessage = (msg) => {
 	}
 }
 
-export const clearOne = (key) => {
+export const clearOne = (id) => {
 	return {
 		type: messageConstants.DELETE_MESSAGE,
-		payload: key
+		payload: id
 	}
 }
 
@@ -72,10 +72,10 @@ export const toggleDetailedMessage = () => {
 }
 
 // Sidebar actions
-export const selectMessage = (name, date, message, key) => {
+export const selectMessage = (name, date, message, id) => {
 	return {
 		type: messageConstants.SELECT_MESSAGE,
-		payload: { name, date, message, key }
+		payload: { name, date, message, id }
 	}
 }
 
@@ -99,7 +99,7 @@ export function postMessage(name, text) {
 		dispatch(fetchMessageRequest());
 		let new_name = getName(name);
 		let date = getCurrDate();
-		let key = getKey(date);
+		let id = getID(date);
 		return fetch("http://localhost:9000/messages/", {
 			method: 'post',
 			headers: {
@@ -109,7 +109,7 @@ export function postMessage(name, text) {
 				name: new_name,
 				text: text,
 				date: date,
-				key: key
+				id: id
 			})
 		})
 			.then(handleErrors)
@@ -121,10 +121,11 @@ export function postMessage(name, text) {
 	};
 }
 
-export function deleteMessage(key) {
+export function deleteMessage(id) {
+	console.log(id);
 	return dispatch => {
 		dispatch(fetchMessageRequest());
-		return fetch("http://localhost:9000/messages/:id", {
+		return fetch("http://localhost:9000/messages/"+id, {
 			method: 'delete',
 			headers: {
 				'Content-Type': 'application/json'
@@ -133,6 +134,7 @@ export function deleteMessage(key) {
 			.then(handleErrors)
 			.then(res => res.json())
 			.then(res => {
+				console.log(res);
 				dispatch(clearOne(res));
 			})
 			.catch(err => dispatch(fetchMessageFailure(err)));
@@ -195,6 +197,6 @@ function getCurrDate() {
     return month + '/' + date + '/' + year + ' ' + hours + ':' + min + ':' + sec;
 }
 
-function getKey(date) {
+function getID(date) {
 	return date.replace(/[^a-zA-Z0-9]/gi,'');
 }
