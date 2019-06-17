@@ -116,10 +116,11 @@ export function postMessage(name, text) {
 			.then(handleErrors)
 			.then(res => res.json())
 			.then(res => {
-				dispatch(fetchMessageSuccess(res));
-				return res;
+				dispatch(addMessage(res));
+				// console.log(res);
+				// return res;
 			})
-			.then(res => addMessage(res))
+			// .then(res => addMessage(res))
 			.catch(err => dispatch(fetchMessageFailure(err)));
 	};
 }
