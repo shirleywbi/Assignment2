@@ -31,21 +31,12 @@ export default function messageReducer(state = initialState, action) {
             return newState;
         case messageConstants.DELETE_MESSAGE:
             newState = Object.assign({}, state);
-            newState.messages = state.messages.slice(0);
-            let id = action.payload;
-            let index;
-            for (let i=0; i < messages.length; i++) {
-                if (messages[i].id === id) {
-                    index = i;
-                    break;
-                }
-            }
-            newState.messages.splice(index, 1);
+            newState.messages = action.payload;
             newState.loading = false;
             return newState;
         case messageConstants.DELETE_ALL: 
             newState = Object.assign({}, state);
-            newState.messages = [];
+            newState.messages = action.payload;
             newState.loading = false;
             return newState;
         default:

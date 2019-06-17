@@ -59,9 +59,10 @@ export const clearOne = (id) => {
 	}
 }
 
-export const clearAll = () => {
+export const clearAll = (res) => {
 	return {
-		type: messageConstants.DELETE_ALL
+		type: messageConstants.DELETE_ALL,
+		payload: res
 	}
 }
 
@@ -134,7 +135,6 @@ export function deleteMessage(id) {
 			.then(handleErrors)
 			.then(res => res.json())
 			.then(res => {
-				console.log(res);
 				dispatch(clearOne(res));
 			})
 			.catch(err => dispatch(fetchMessageFailure(err)));
@@ -148,8 +148,9 @@ export function deleteMessages() {
 			method: 'delete'
 		})
 			.then(handleErrors)
-			.then(() => {
-				dispatch(clearAll());
+			.then(res => res.json())
+			.then((res) => {
+				dispatch(clearAll(res));
 			})
 			.catch(err => dispatch(fetchMessageFailure(err)));
 	};
