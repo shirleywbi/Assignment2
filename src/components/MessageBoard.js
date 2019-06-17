@@ -1,22 +1,21 @@
 import React from 'react';
 import Message from './Message';
 import { connect } from 'react-redux';
-import { fetchMessages, deleteAllMessage } from '../actions/index.js';
+import { getMessages, deleteAllMessage } from '../actions/index.js';
 import MessageSideBar from './MessageSideBar.js';
 
 class MessageBoard extends React.Component {
     componentDidMount() {
-        this.props.fetchMessages();
+        this.props.getMessages();
     }
 
     render() {
         const { error, loading, messages } = this.props.messageStore;
         let output = null;
-        // console.log(this.props);
         if (error) {
-            output = "Error.";
-        } else if (loading) {
-            output = "Loading...";
+            output = <div>Error.</div>;
+        } else if (messages === [] && loading) {
+            output = <div>Loading...</div>;
         } else if (messages !== []) {
             output = messages.map(message => <Message name={ message.name } date={ message.date } text={ message.text } key={ message.key }/>);
         }
@@ -38,4 +37,4 @@ const mapStateToProps = (state) => {
     return state;
 }
 
-export default connect(mapStateToProps, { deleteAllMessage, fetchMessages })(MessageBoard);
+export default connect(mapStateToProps, { deleteAllMessage, getMessages })(MessageBoard);

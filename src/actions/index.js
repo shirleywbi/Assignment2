@@ -45,10 +45,10 @@ export const updateMessage = (event) => {
 }
 
 // Message actions
-export const addMessage = (name, text) => {
+export const addMessage = (msg) => {
 	return {
 		type: messageConstants.ADD_MESSAGE,
-		payload: { name, text }
+		payload: msg
 	}
 }
 
@@ -79,8 +79,9 @@ export const selectMessage = (name, date, message, key) => {
 	}
 }
 
-// Fetch actions
-export function fetchMessages() {
+// Fetch Actions
+// Get Messages:
+export function getMessages() {
 	return dispatch => {
 		dispatch(fetchMessageRequest());
 		return fetch("http://localhost:9000/messages")
@@ -93,6 +94,42 @@ export function fetchMessages() {
 			.catch(err => dispatch(fetchMessageFailure(err)));
 	};
 }
+
+export function postMessage(name, text) {
+	return dispatch => {
+		dispatch(fetchMessageRequest());
+		let new_name = getName(name);
+		let date = getCurrDate();
+		let key = getKey(date);
+		return fetch("http://localhost:9000/messages/", {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				name: new_name,
+				text: text,
+				date: date,
+				key: key
+			})
+		})
+			.then(handleErrors)
+			.then(res => res.json())
+			.then(res => {
+				dispatch(fetchMessageSuccess(res));
+				return res;
+			})
+			.then(res => addMessage(res))
+			.catch(err => dispatch(fetchMessageFailure(err)));
+	};
+}
+
+// export function deleteMessages() {
+// 	return dispatch => {
+// 		dispatch(fetchMessageRequest());
+// 		return fetch()
+// 	}
+// }
 
 // To handle HTTP errors
 const handleErrors = (response) => {
@@ -122,3 +159,20 @@ export const fetchMessageFailure = (err) => {
 	}
 }
 
+function getName(name) {
+	return name === "" ? "Anonymous" : name;
+}
+
+function getCurrDate() {
+    const date = new Date().getDate();
+    const month = new Date().getMonth() + 1;
+    const year = new Date().getFullYear();
+    const hours = new Date().getHours();
+    const min = new Date().getMinutes();
+    const sec = new Date().getSeconds();
+    return month + '/' + date + '/' + year + ' ' + hours + ':' + min + ':' + sec;
+}
+
+function getKey(date) {
+	return date.replace(/[^a-zA-Z0-9]/gi,'');
+}

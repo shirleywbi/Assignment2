@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addMessage, clearForm, updateName, updateMessage } from '../actions/index.js';
+import { postMessage, clearForm, updateName, updateMessage } from '../actions/index.js';
 
 class MessageForm extends React.Component {
     render() {
@@ -15,7 +15,7 @@ class MessageForm extends React.Component {
                 <textarea id="text" className="form-item" rows="5" cols="70" placeholder="Enter your message" value={this.props.formStore.message} 
                           onChange={(e) => this.props.updateMessage(e)}></textarea>
                 <br />
-                <button className="mid-button button" onClick={() => this.props.addMessage(this.props.formStore.name, this.props.formStore.message)}>Add</button>
+                <button className="mid-button button" onClick={() => this.props.postMessage(this.props.formStore.name, this.props.formStore.message)}>Add</button>
                 <button className="mid-button button" onClick={() => this.props.clearForm()}>Clear</button>
             </form>
         </div>);
@@ -26,4 +26,4 @@ const mapStateToProps = (state) => {
     return state;
 }
 
-export default connect(mapStateToProps, { addMessage, clearForm, updateName, updateMessage })(MessageForm);
+export default connect(mapStateToProps, { postMessage, clearForm, updateName, updateMessage })(MessageForm);
