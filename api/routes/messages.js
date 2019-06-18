@@ -55,9 +55,11 @@ router.post('/', function(req, res, next) {
 router.post('/:id', function(req, res, next) {
     let id = req.params.id;
     let new_msg = req.body.text;
+    let date = req.body.date;
     for (let i=0; i < messages.length; i++) {
         if (messages[i].id === id) {
             messages[i].text = new_msg;
+            messages[i].date = date;
             break;
         }
     }

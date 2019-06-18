@@ -18,7 +18,7 @@ export const messageConstants = {
 };
 
 export const editConstants = {
-	UPDATE_EDIT: 'UPDATE_EDIT',
+	UPDATE_EDITBOX: 'UPDATE_EDITBOX',
 	TOGGLE_EDIT: 'TOGGLE_EDIT'
 }
 
@@ -59,7 +59,7 @@ export const addMessage = (msg) => {
 
 export const updateEditBox = (event) => {
 	return {
-		type: editConstants.UPDATE_EDIT,
+		type: editConstants.UPDATE_EDITBOX,
 		payload: event.target.value
 	}
 }
@@ -144,6 +144,8 @@ export function postMessage(name, text) {
 
 export function postEditMessage(msg, new_text) {
 	return async dispatch => {
+		let new_date = getCurrDate();
+		let new_entry = new_text === null ? msg.text : new_text;
 		return fetch("http://localhost:9000/messages/"+msg.id, {
 			method: 'post',
 			headers: {
@@ -151,8 +153,8 @@ export function postEditMessage(msg, new_text) {
 			},
 			body: JSON.stringify({
 				name: msg.name,
-				text: new_text,
-				date: msg.date,
+				text: new_entry,
+				date: new_date,
 				id: msg.id
 			})
 		})
