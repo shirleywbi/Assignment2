@@ -64,10 +64,10 @@ export const updateEditBox = (event) => {
 	}
 }
 
-export const toggleEdit = (id) => {
+export const toggleEdit = (id, msg) => {
 	return {
 		type: editConstants.TOGGLE_EDIT,
-		payload: id
+		payload: {id, msg}
 	}
 }
 

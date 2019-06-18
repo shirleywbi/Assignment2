@@ -10,14 +10,15 @@ class Message extends React.Component {
                 <div className="msg">{this.props.name} says: "{this.props.text}"</div>
                 <div className="msg-buttons">
                     <button className="small-button"
-                        onClick={() => {this.props.toggleEdit(this.props.id);}}>edit</button>
+                        onClick={() => {this.props.toggleEdit(this.props.id, this.props.text);}}>edit</button>
                     <button className="small-button"
                         onClick={() => {this.props.deleteMessage(this.props.id);}}>x</button>
                 </div>
             </li>
             <li>
-                {!this.props.editStore.hidden && <MessageEditBox hidden={this.props.editStore.hidden} 
-                name={this.props.name} text={this.props.text} date={this.props.date} id={this.props.id}/>}
+                {!this.props.editStore.hidden && this.props.editStore.activeID === this.props.id && 
+                <MessageEditBox hidden={this.props.editStore.hidden} name={this.props.name} 
+                text={this.props.text} date={this.props.date} id={this.props.id}/>}
             </li>
         </div>
         );

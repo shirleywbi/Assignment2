@@ -1,6 +1,6 @@
 import { editConstants, messageConstants } from '../actions/index.js';
 
-const initialState = { message: null, hidden: true, activeIndex: 0 };
+const initialState = { message: null, hidden: true, activeID: 0 };
 
 export default function editReducer(state = initialState, action) {
     let newState;
@@ -11,6 +11,8 @@ export default function editReducer(state = initialState, action) {
             return newState;
         case editConstants.TOGGLE_EDIT:
             newState = Object.assign({}, state);
+            newState.activeID = action.payload.id;
+            newState.message = action.payload.msg;
             newState.hidden = !state.hidden;
             return newState;
         case messageConstants.EDIT_MESSAGE:
