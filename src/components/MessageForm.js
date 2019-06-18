@@ -10,12 +10,12 @@ class MessageForm extends React.Component {
                 <h2 id="msg-header" className="header">MESSAGE</h2>
                 <label className="form-label">
                     Name
-                    <input id="name" type="text" className="form-item" value={this.props.formStore.name} onChange={(e) => this.props.updateName(e)}/>
+                    <input id="name" type="text" className="form-item" value={this.props.name} onChange={(e) => this.props.updateName(e)}/>
                 </label>
-                <textarea id="text" className="form-item" rows="5" cols="70" placeholder="Enter your message" value={this.props.formStore.message} 
+                <textarea id="text" className="form-item" rows="5" cols="70" placeholder="Enter your message" value={this.props.message} 
                           onChange={(e) => this.props.updateMessage(e)}></textarea>
                 <br />
-                <button className="mid-button button" onClick={() => this.props.postMessage(this.props.formStore.name, this.props.formStore.message)}>Add</button>
+                <button className="mid-button button" onClick={() => this.props.postMessage(this.props.name, this.props.message)}>Add</button>
                 <button className="mid-button button" onClick={() => this.props.clearForm()}>Clear</button>
             </form>
         </div>);
@@ -23,7 +23,10 @@ class MessageForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return state;
+    return {
+        name: state.formStore.name,
+        message: state.formStore.message
+    }
 }
 
 export default connect(mapStateToProps, { postMessage, clearForm, updateName, updateMessage })(MessageForm);

@@ -3,10 +3,12 @@ import { combineReducers } from 'redux';
 import messageReducer from "./messageReducer.js";
 import formReducer from "./formReducer.js";
 import popupReducer from "./popupReducer.js";
+import editReducer from './editReducer.js';
 
 
 export default combineReducers({
     messageStore: messageReducer,
     formStore: formReducer,
-    popupStore: popupReducer
+    popupStore: popupReducer,
+    editStore: editReducer
 });

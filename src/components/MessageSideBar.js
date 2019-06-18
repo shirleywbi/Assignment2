@@ -1,7 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-class MessageSideBar extends React.Component {
+export default class MessageSideBar extends React.Component {
     render() {
         return (
             <div className="sidebar">
@@ -15,9 +14,3 @@ class MessageSideBar extends React.Component {
         );
     }
 }
-
-const mapStateToProps = (state) => {
-    return state;
-}
-
-export default connect(mapStateToProps)(MessageSideBar);

@@ -44,11 +44,24 @@ router.get('/:id', function(req, res, next) {
     res.json(message);
 });
 
-// POST message
+// POST messages
 router.post('/', function(req, res, next) {
     let new_message = req.body;
     messages.push(new_message);
-    res.json(new_message);
+    res.json(messages);
+});
+
+// POST message
+router.post('/:id', function(req, res, next) {
+    let id = req.params.id;
+    let new_msg = req.body;
+    for (let i=0; i < messages.length; i++) {
+        if (messages[i].id === id) {
+            messages[i].message = new_msg;
+            break;
+        }
+    }
+    res.json(messages);
 });
 
 // DELETE message

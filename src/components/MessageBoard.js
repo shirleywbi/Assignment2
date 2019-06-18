@@ -35,7 +35,10 @@ class MessageBoard extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return state;
+    return {
+        messageStore: state.messageStore,
+        popupStore: state.popupStore
+    };
 }
 
 export default connect(mapStateToProps, { deleteMessages, getMessages })(MessageBoard);

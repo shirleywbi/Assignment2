@@ -26,16 +26,14 @@ body {
     box-shadow: inset -1px -1px 1px 0px rgb(95, 95, 95);
 }
 
-#small-button {
+.small-button {
     background-color: #323232;
     color: white;
-    position: absolute;
-    right: 25%;
     border: none;
     border-radius: 2px;
     text-align: center;
     box-shadow: inset -1px -1px 1px 0px rgb(95, 95, 95);
-    margin: 5px;
+    margin: 2px;
 }
 
 .button {
@@ -128,7 +126,7 @@ a {
     padding: 0;
 }
 
-.msg {
+.msg-block {
     word-wrap: break-word;
     border: 1px solid #e2e2e2;
     font-style: italic;
@@ -141,9 +139,23 @@ a {
     z-index: 1;
 }
 
-.msg:hover {
+.msg-block:hover {
     background-color: white;
 }
+
+.msg {
+    width: 94%;
+    display: inline-block;
+}
+
+.msg-buttons {
+    position: absolute;
+    display: inline-block;
+    right: 25%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 
 /* Sidebar */
 .sidebar {

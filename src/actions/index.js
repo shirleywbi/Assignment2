@@ -11,11 +11,16 @@ export const formConstants = {
 
 export const messageConstants = {
 	ADD_MESSAGE: 'ADD_MESSAGE',
+	EDIT_MESSAGE: 'EDIT_MESSAGE',
 	DELETE_MESSAGE: 'DELETE_MESSAGE',
 	DELETE_ALL: 'DELETE_ALL',
 	TOGGLE_MESSAGE: 'TOGGLE_MESSAGE',
 	SELECT_MESSAGE: 'SELECT_MESSAGE'
 };
+
+export const editConstants = {
+	UPDATE_EDIT: 'UPDATE_EDIT'
+}
 
 export const fetchConstants = {
 	FETCH_MESSAGES_REQUEST: 'FETCH_MESSAGES_REQUEST',
@@ -52,6 +57,20 @@ export const addMessage = (msg) => {
 	}
 }
 
+export const updateEditBox = (event) => {
+	return {
+		type: editConstants.UPDATE_EDIT,
+		payload: event.target.value
+	}
+}
+
+export const editMessage = (res) => {
+	return {
+		type: messageConstants.EDIT_MESSAGE,
+		payload: res
+	}
+}
+
 export const clearOne = (id) => {
 	return {
 		type: messageConstants.DELETE_MESSAGE,
@@ -82,7 +101,7 @@ export const selectMessage = (name, date, message, id) => {
 
 // Server Actions
 export function getMessages() {
-	return dispatch => {
+	return async dispatch => {
 		dispatch(fetchMessageRequest());
 		return fetch("http://localhost:9000/messages")
 			.then(handleErrors)
@@ -96,7 +115,7 @@ export function getMessages() {
 }
 
 export function postMessage(name, text) {
-	return dispatch => {
+	return async dispatch => {
 		dispatch(fetchMessageRequest());
 		let new_name = getName(name);
 		let date = getCurrDate();
@@ -122,9 +141,31 @@ export function postMessage(name, text) {
 	};
 }
 
+export function postEditMessage(msg, new_text) {
+	return async dispatch => {
+		return fetch("http://localhost:9000/messages/"+msg.id, {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				name: msg.name,
+				text: new_text,
+				date: msg.date,
+				id: msg.id
+			})
+		})
+			.then(handleErrors)
+			.then(res => res.json())
+			.then(res => {
+				dispatch(editMessage(res));
+			})
+			.catch(err => dispatch(fetchMessageFailure(err)));
+	};
+}
+
 export function deleteMessage(id) {
-	console.log(id);
-	return dispatch => {
+	return async dispatch => {
 		dispatch(fetchMessageRequest());
 		return fetch("http://localhost:9000/messages/"+id, {
 			method: 'delete',
@@ -142,7 +183,7 @@ export function deleteMessage(id) {
 }
 
 export function deleteMessages() {
-	return dispatch => {
+	return async dispatch => {
 		dispatch(fetchMessageRequest());
 		return fetch("http://localhost:9000/messages/", {
 			method: 'delete'
