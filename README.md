@@ -10,6 +10,13 @@
 Click save to update the message and message date. To go back without any changes, click edit again.
 - UPDATE June 18, 2019: Messages are now connected to the server.
 
+### *Main Page*
+![Main](./images/Screenshot-Main.png)
+### *Main Page (Edit)*
+![Main-Edit](./images/Screenshot-Edit.png)
+### *Main Page (Side Panel)*
+![Main-SidePanel](./images/Screenshot-SidePanel.png)
+
 ### References and Resources:
 How to add Express backend to a React app
 https://www.freecodecamp.org/news/create-a-react-frontend-a-node-express-backend-and-connect-them-together-c5798926047c/
