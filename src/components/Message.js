@@ -1,24 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteMessage, selectMessage } from '../actions/index.js'
+import { deleteMessage, toggleMessage, toggleEdit } from '../actions/index.js'
 import MessageEditBox from './MessageEditBox.js';
 
 class Message extends React.Component {
     render() {
         return (<div>
-            <li className="msg-block" onClick={() => this.props.selectMessage(this.props.name, this.props.date, this.props.text, this.props.id)}> 
+            <li className="msg-block" onClick={() => this.props.toggleMessage(this.props.name, this.props.date, this.props.text, this.props.id)}> 
                 <div className="msg">{this.props.name} says: "{this.props.text}"</div>
                 <div className="msg-buttons">
                     <button className="small-button"
-                        onClick={() => {this.props.editMessage(this.props.id);}}>e</button>
+                        onClick={() => {this.props.toggleEdit(this.props.id);}}>edit</button>
                     <button className="small-button"
                         onClick={() => {this.props.deleteMessage(this.props.id);}}>x</button>
                 </div>
             </li>
-            <li><MessageEditBox message={this.props}/></li>
+            <li>
+                {!this.props.editStore.hidden && <MessageEditBox hidden={this.props.editStore.hidden} message={this.props}/>}
+            </li>
         </div>
         );
     }
 }
 
-export default connect(null, { deleteMessage, selectMessage })(Message);
+const mapStateToProps = (state) => {
+    return {
+        newMessage: state.editStore.message,
+        editStore: state.editStore
+    };
+}
+
+export default connect(mapStateToProps, { deleteMessage, toggleMessage, toggleEdit })(Message);

@@ -54,10 +54,10 @@ router.post('/', function(req, res, next) {
 // POST message
 router.post('/:id', function(req, res, next) {
     let id = req.params.id;
-    let new_msg = req.body;
+    let new_msg = req.body.text;
     for (let i=0; i < messages.length; i++) {
         if (messages[i].id === id) {
-            messages[i].message = new_msg;
+            messages[i].text = new_msg;
             break;
         }
     }

@@ -1,10 +1,11 @@
-const initialState = { hidden: true, name: "", date: "", message: "", id: -1 }
+import { messageConstants } from '../actions/index.js';
+const initialState = { hidden: true, name: "", date: "", message: "", id: "" }
 
 export default function popupReducer(state = initialState, action) {
     let newState;
     switch(action.type) {
-        case 'SELECT_MESSAGE':
-            if (!state.hidden && state.message === action.payload.message && state.name === action.payload.name) {
+        case messageConstants.TOGGLE_MESSAGE:
+            if (!state.hidden && state.date === action.payload.date) {
                 newState = Object.assign({}, state, state.hidden = true);
             } else {
                 newState = Object.assign({}, state, state.hidden = false); 
@@ -13,7 +14,7 @@ export default function popupReducer(state = initialState, action) {
             newState.date = action.payload.date;
             newState.message = action.payload.message;
             return newState;
-        case 'DELETE_ALL':
+        case messageConstants.DELETE_ALL:
             newState = Object.assign({}, state, state.hidden = true);
             return newState;
         default:

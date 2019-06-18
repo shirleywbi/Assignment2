@@ -14,12 +14,12 @@ export const messageConstants = {
 	EDIT_MESSAGE: 'EDIT_MESSAGE',
 	DELETE_MESSAGE: 'DELETE_MESSAGE',
 	DELETE_ALL: 'DELETE_ALL',
-	TOGGLE_MESSAGE: 'TOGGLE_MESSAGE',
-	SELECT_MESSAGE: 'SELECT_MESSAGE'
+	TOGGLE_MESSAGE: 'TOGGLE_MESSAGE'
 };
 
 export const editConstants = {
-	UPDATE_EDIT: 'UPDATE_EDIT'
+	UPDATE_EDIT: 'UPDATE_EDIT',
+	TOGGLE_EDIT: 'TOGGLE_EDIT'
 }
 
 export const fetchConstants = {
@@ -64,6 +64,13 @@ export const updateEditBox = (event) => {
 	}
 }
 
+export const toggleEdit = (id) => {
+	return {
+		type: editConstants.TOGGLE_EDIT,
+		payload: id
+	}
+}
+
 export const editMessage = (res) => {
 	return {
 		type: messageConstants.EDIT_MESSAGE,
@@ -85,16 +92,10 @@ export const clearAll = (res) => {
 	}
 }
 
-export const toggleDetailedMessage = () => {
-	return {
-		type: messageConstants.TOGGLE_MESSAGE
-	}
-}
-
 // Sidebar actions
-export const selectMessage = (name, date, message, id) => {
+export const toggleMessage = (name, date, message, id) => {
 	return {
-		type: messageConstants.SELECT_MESSAGE,
+		type: messageConstants.TOGGLE_MESSAGE,
 		payload: { name, date, message, id }
 	}
 }
