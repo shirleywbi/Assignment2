@@ -16,7 +16,8 @@ class Message extends React.Component {
                 </div>
             </li>
             <li>
-                {!this.props.editStore.hidden && <MessageEditBox hidden={this.props.editStore.hidden} message={this.props}/>}
+                {!this.props.editStore.hidden && <MessageEditBox hidden={this.props.editStore.hidden} 
+                name={this.props.name} text={this.props.text} date={this.props.date} id={this.props.id}/>}
             </li>
         </div>
         );

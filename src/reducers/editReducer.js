@@ -15,7 +15,6 @@ export default function editReducer(state = initialState, action) {
             return newState;
         case messageConstants.EDIT_MESSAGE:
             newState = Object.assign({}, state);
-            newState.message = action.payload;
             newState.hidden = true;
             return newState;
         default: 

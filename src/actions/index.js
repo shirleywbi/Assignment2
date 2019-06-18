@@ -142,20 +142,20 @@ export function postMessage(name, text) {
 	};
 }
 
-export function postEditMessage(msg, new_text) {
+export function postEditMessage(name, text, date, id, new_text) {
 	return async dispatch => {
 		let new_date = getCurrDate();
-		let new_entry = new_text === null ? msg.text : new_text;
-		return fetch("http://localhost:9000/messages/"+msg.id, {
+		let new_entry = new_text === null ? text : new_text;
+		return fetch("http://localhost:9000/messages/"+id, {
 			method: 'post',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				name: msg.name,
+				name: name,
 				text: new_entry,
 				date: new_date,
-				id: msg.id
+				id: id
 			})
 		})
 			.then(handleErrors)
