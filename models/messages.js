@@ -1,8 +1,4 @@
-import { MongoClient } from 'mongodb';
-import { mongoURL } from "../config";
-
-const URL = mongoURL;
-
+// Connect to MongoDB
 let messages = [
     {
         name: 'Rick',
@@ -32,14 +28,39 @@ let messages = [
         id: "63201994504"
     }];
 
-MongoClient.connect(URL, function(err, db) {
+const MongoClient = require('mongodb').MongoClient;
+const URL = require('../config.js');
+
+MongoClient.connect(URL, { useNewUrlParser: true }, function(err, client) {
     if (err) {
         console.log("Error in connecting to MongoDB.");
         return;
     }
     console.log("Connected...");
-    let collection = db.collection('messages');
-    collection.insertMany(messages);
-    console.log(db.messages.find().pretty());
+    let db = client.db('data');
+    db.createCollection('messages').then(() => {
+      let msgCollection = db.collection('messages');
+      msgCollection.stats((err, res) => {
+        printIfError(err);
+        if (res.count === 0) {
+          msgCollection.insertMany(messages);
+        }
+      });
+      msgCollection.find({}, (err, data) => {
+        printIfError(err);
+        data.toArray((err, res) => {
+          printIfError(err);
+          console.log(res);
+        });
+      })  
+    });
     db.close;
 })
+
+function printIfError(err) {
+  if (err) {
+    console.log("error: " + err);
+  }
+}
+
+module.exports = messages;
