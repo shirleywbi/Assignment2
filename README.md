@@ -28,6 +28,8 @@ Creating Actions for Fetching Posts
 https://redux.js.org/advanced/async-actions#async-action-creators
 https://daveceddia.com/where-fetch-data-redux/
 
+How to Reuse MongoDB Connection:
+https://stackoverflow.com/questions/24621940/how-to-properly-reuse-connection-to-mongodb-across-nodejs-application-and-module
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

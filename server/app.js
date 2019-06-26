@@ -1,4 +1,11 @@
 // Reference: https://www.freecodecamp.org/news/create-a-react-frontend-a-node-express-backend-and-connect-them-together-c5798926047c/
+let app;
+
+// database setup
+let mongo = require('../models/db.js');
+mongo = mongo.init();
+
+// misc setup
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,13 +13,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 
+// router setup
 var indexRouter = require('./api/routes/index');
 var usersRouter = require('./api/routes/users');
 var messagesRouter = require('./api/routes/messages');
 
-let mongo = require('../models/messages.js');
-
-var app = express();
+app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
