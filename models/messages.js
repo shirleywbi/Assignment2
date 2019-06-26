@@ -1,6 +1,7 @@
 import { MongoClient } from 'mongodb';
+import { mongoURL } from "../config";
 
-const URL = 'mongodb://localhost:9000/messages';
+const URL = mongoURL;
 
 let messages = [
     {
@@ -32,7 +33,11 @@ let messages = [
     }];
 
 MongoClient.connect(URL, function(err, db) {
-    if (err) return;
+    if (err) {
+        console.log("Error in connecting to MongoDB.");
+        return;
+    }
+    console.log("Connected...");
     let collection = db.collection('messages');
     collection.insertMany(messages);
     console.log(db.messages.find().pretty());
