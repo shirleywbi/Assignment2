@@ -1,5 +1,5 @@
 # Message Log Website 2.0
-### *Tech Stack: React, Redux, JSX, CSS, Express*
+### *Tech Stack: React, Redux, JSX, CSS, Express, MongoDB*
 - Add: Logs the message entered into the text area in the message board
 - Clear: Clears the message in the text area
 - Clear All: Removes all items on message board
@@ -9,6 +9,9 @@
 - Edit: Clicking edit button will create a message box to edit the message.
 Click save to update the message and message date. To go back without any changes, click edit again.
 - UPDATE June 18, 2019: Messages are now connected to the server.
+
+### How to run the project:
+Run `npm start` from the terminal.
 
 ### *Main Page*
 ![Main](./images/Screenshot-Main.png)
