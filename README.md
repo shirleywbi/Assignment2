@@ -8,17 +8,13 @@
 - Message: If a message is clicked, a side bar will appear with message details
 - Edit: Clicking edit button will create a message box to edit the message.
 Click save to update the message and message date. To go back without any changes, click edit again.
+- Filter: Users can filter by name.
 - UPDATE June 18, 2019: Messages are now connected to the server.
+
+![Main](./images/Screenshot-Main.png)
 
 ### How to run the project:
 Run `npm start` from the terminal.
-
-### *Main Page*
-![Main](./images/Screenshot-Main.png)
-### *Main Page (Edit)*
-![Main-Edit](./images/Screenshot-Edit.png)
-### *Main Page (Side Panel)*
-![Main-SidePanel](./images/Screenshot-SidePanel.png)
 
 ### References and Resources:
 How to add Express backend to a React app
@@ -33,6 +29,7 @@ https://mongodb.github.io/node-mongodb-native/3.0/reference/ecmascriptnext/conne
 
 How to Reuse MongoDB Connection:
 https://stackoverflow.com/questions/24621940/how-to-properly-reuse-connection-to-mongodb-across-nodejs-application-and-module
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
