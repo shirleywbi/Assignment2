@@ -7,7 +7,7 @@ let db = require('../../../models/db.js');
 router.get('/', function(req, res, next) {
     let database = db.getDatabase();
     let msgColl = database.collection('messages');
-    msgColl.find().toArray((err, messages) => {
+    msgColl.find({}).toArray((err, messages) => {
         if (err) {
             console.log("error: " + err);
         }
@@ -18,17 +18,29 @@ router.get('/', function(req, res, next) {
 // GET individual message
 router.get('/:id', function(req, res, next) {
     let id = req.params.id;
-    let message = messages.filter(msg => {
-        return msg.id === id;
-    });
-    res.json(message);
+    let database = db.getDatabase();
+    let msgColl = database.collection('messages');
+    msgColl.find({id: id}).toArray((err, messages) => {
+        if (err) {
+            console.log("error: " + err);
+        }
+        res.json(messages);
+    })
 });
 
 // POST messages
 router.post('/', function(req, res, next) {
     let new_message = req.body;
-    messages.push(new_message);
-    res.json(messages);
+    let database = db.getDatabase();
+    let msgColl = database.collection('messages');
+    msgColl.insertOne(new_message, () => {
+        msgColl.find({}).toArray((err, messages) => {
+            if (err) {
+                console.log("error: " + err);
+            }
+            res.json(messages);
+        })
+    });
 });
 
 // POST message
@@ -36,34 +48,43 @@ router.post('/:id', function(req, res, next) {
     let id = req.params.id;
     let new_msg = req.body.text;
     let date = req.body.date;
-    for (let i=0; i < messages.length; i++) {
-        if (messages[i].id === id) {
-            messages[i].text = new_msg;
-            messages[i].date = date;
-            break;
+    let database = db.getDatabase();
+    let msgColl = database.collection('messages');
+    msgColl.update(
+        {id: id},
+        {$set: {text: new_msg, date: date}},
+        () => {
+            msgColl.find({}).toArray((err, messages) => {
+                if (err) {
+                    console.log("error: " + err);
+                }
+                res.json(messages);
+            })
         }
-    }
-    res.json(messages);
+    );
 });
 
 // DELETE message
 router.delete('/:id', function(req, res, next) {
     let id = req.params.id;
-    let index;
-    for (let i=0; i < messages.length; i++) {
-        if (messages[i].id === id) {
-            index = i;
-            break;
-        }
-    }
-    messages.splice(index, 1);
-    res.json(messages);
+    let database = db.getDatabase();
+    let msgColl = database.collection('messages');
+    msgColl.deleteOne({id: id}, () => {
+        msgColl.find({}).toArray((err, messages) => {
+            if (err) {
+                console.log("error: " + err);
+            }
+            res.json(messages);
+        })
+    });
 });
 
 // DELETE ALL messages
 router.delete('/', function(req, res, next) {
-    messages = [];
-    res.json(messages);
+    let database = db.getDatabase();
+    let msgColl = database.collection('messages');
+    msgColl.drop();
+    res.json([]);
 });
 
 
