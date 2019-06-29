@@ -15,12 +15,26 @@ router.get('/', function(req, res, next) {
     })
 });
 
-// GET individual message
-router.get('/:id', function(req, res, next) {
-    let id = req.params.id;
+// // GET individual message by id
+// router.get('/:id', function(req, res, next) {
+//     let id = req.params.id;
+//     let database = db.getDatabase();
+//     let msgColl = database.collection('messages');
+//     msgColl.find({id: id}).toArray((err, messages) => {
+//         if (err) {
+//             console.log("error: " + err);
+//         }
+//         res.json(messages);
+//     })
+// });
+
+// GET individual message by name
+router.get('/:name', function(req, res, next) {
+    let name = req.params.name;
+    let filter = name === ""? {}: {name: name};
     let database = db.getDatabase();
     let msgColl = database.collection('messages');
-    msgColl.find({id: id}).toArray((err, messages) => {
+    msgColl.find(filter).toArray((err, messages) => {
         if (err) {
             console.log("error: " + err);
         }

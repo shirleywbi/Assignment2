@@ -22,6 +22,10 @@ export const editConstants = {
 	TOGGLE_EDIT: 'TOGGLE_EDIT'
 }
 
+export const filterConstants = {
+	UPDATE_NAME_FILTER: 'UPDATE_NAME_FILTER',
+};
+
 export const fetchConstants = {
 	FETCH_MESSAGES_REQUEST: 'FETCH_MESSAGES_REQUEST',
 	FETCH_MESSAGES_SUCCESS: 'FETCH_MESSAGES_SUCCESS',
@@ -45,6 +49,14 @@ export const updateName = (event) => {
 export const updateMessage = (event) => {
 	return {
 		type: formConstants.UPDATE_MESSAGE,
+		payload: event.target.value
+	}
+}
+
+// Filter actions
+export const updateNameFilter = (event) => {
+	return {
+		type: filterConstants.UPDATE_NAME_FILTER,
 		payload: event.target.value
 	}
 }
@@ -105,6 +117,19 @@ export function getMessages() {
 	return async dispatch => {
 		dispatch(fetchMessageRequest());
 		return fetch("http://localhost:9000/messages")
+			.then(handleErrors)
+			.then(res => res.json())
+			.then(res => {
+				dispatch(fetchMessageSuccess(res));
+				return res;
+			})
+			.catch(err => dispatch(fetchMessageFailure(err)));
+	};
+}
+
+export function getMessageByName(name) {
+	return async dispatch => {
+		return fetch("http://localhost:9000/messages/"+name)
 			.then(handleErrors)
 			.then(res => res.json())
 			.then(res => {

@@ -168,6 +168,12 @@ a {
     padding: 1rem;
 }
 
+/* Filter */
+#filter-box {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
 /* About Me */
 .highlight-text {
     font-style: italic;
