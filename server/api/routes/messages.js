@@ -1,23 +1,18 @@
 // Reference: https://stackoverflow.com/questions/24621940/how-to-properly-reuse-connection-to-mongodb-across-nodejs-application-and-module
 var express = require('express');
 var router = express.Router();
-let db = require('../../../models/db.js').getDatabase((res) => {
-    console.log(res);
-});
-
-// let messages = [];
-// let messages = db.collection('messages');
+let db = require('../../../models/db.js');
 
 // GET messages
 router.get('/', function(req, res, next) {
-    // console.log(db);
-    db.collection('messages').find({}, (err, res) => {
+    let database = db.getDatabase();
+    let msgColl = database.collection('messages');
+    msgColl.find().toArray((err, messages) => {
         if (err) {
             console.log("error: " + err);
         }
-        res.json(res);
-    });
-    // res.json(messages);
+        res.json(messages);
+    })
 });
 
 // GET individual message

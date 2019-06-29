@@ -28,6 +28,9 @@ Creating Actions for Fetching Posts
 https://redux.js.org/advanced/async-actions#async-action-creators
 https://daveceddia.com/where-fetch-data-redux/
 
+Connecting to MongoDB:
+https://mongodb.github.io/node-mongodb-native/3.0/reference/ecmascriptnext/connecting/
+
 How to Reuse MongoDB Connection:
 https://stackoverflow.com/questions/24621940/how-to-properly-reuse-connection-to-mongodb-across-nodejs-application-and-module
 ---

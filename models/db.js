@@ -1,6 +1,7 @@
+// https://mongodb.github.io/node-mongodb-native/3.0/reference/ecmascriptnext/connecting/
 // Connect to MongoDB
 const MongoClient = require('mongodb').MongoClient;
-const URL = require('../config.js');
+const url = require('../config.js');
 
 module.exports = {
   init,
@@ -39,30 +40,31 @@ let messages = [
   }];
 
 async function init() {
-  MongoClient.connect(URL, { useNewUrlParser: true }, function(err, client) {
-      if (err) {
-          console.log("Error in connecting to MongoDB.");
-          return;
-      }
-      console.log("Connected...");
-      db = client.db('data');
-      setDatabase(db);
-      db.createCollection('messages').then(() => {
-        let msgCollection = db.collection('messages');
-        msgCollection.stats((err, res) => {
-          printIfError(err);
-          if (res.count === 0) {
-            msgCollection.insertMany(messages);
-          }
-        });
-        // printCollection(msgCollection);
-      });
-      // close(db);
-  })
-}
+  let client;
+  const dbName = 'data';
+  const coll = 'messages';
 
-function setDatabase(db) {
-  this.db = db;
+  try {
+    client = await MongoClient.connect(url, { useNewUrlParser: true });
+    db = client.db(dbName);
+    console.log("Connected...");
+    db.createCollection(coll).then(() => {
+      let msgCollection = db.collection(coll);
+      msgCollection.stats((err, res) => {
+        printIfError(err);
+        if (res.count === 0) {
+          msgCollection.insertMany(messages);
+        }
+      });
+      // printCollection(msgCollection);
+    });
+  } catch (err) {
+    console.log("Error in connecting to MongoDB: " + err);
+  }
+  
+  // if (client) {
+    // close(db);
+  // }  
 }
 
 function printIfError(err) {
@@ -87,6 +89,5 @@ function close(db) {
 }
 
 function getDatabase() {
-  console.log("getDB: " + this.db);
   return db;
 }

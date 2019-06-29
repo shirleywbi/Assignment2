@@ -2,8 +2,7 @@
 let app;
 
 // database setup
-let mongo = require('../models/db.js');
-mongo = mongo.init();
+let mongo = require('../models/db.js').init();
 
 // misc setup
 var createError = require('http-errors');
