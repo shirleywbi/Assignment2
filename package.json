@@ -3,12 +3,21 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "npm start --prefix server",
-        "heroku-postbuild": "npm start --prefix client"
+        "start": "node server.js",
+        "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
     },
     "dependencies": {
         "mongodb": "^3.2.7",
-        "react-scripts": "3.0.1"
+        "cookie-parser": "~1.4.4",
+        "cors": "^2.8.5",
+        "debug": "~2.6.9",
+        "express": "^4.17.1",
+        "http-errors": "~1.6.3",
+        "morgan": "~1.9.1",
+        "pug": "^2.0.4"
+    },
+    "devDependencies": {
+        "nodemon": "^1.19.1"
     },
     "engines": {
         "node": "10.15.0"

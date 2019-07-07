@@ -1,3 +1,3 @@
 // Procfile
 
-web: npm start --prefix client
+web: npm start

@@ -1,7 +1,7 @@
 // Reference: https://stackoverflow.com/questions/24621940/how-to-properly-reuse-connection-to-mongodb-across-nodejs-application-and-module
 var express = require('express');
 var router = express.Router();
-let db = require('../../../models/db.js');
+let db = require('../models/db.js');
 
 // GET messages
 router.get('/', function(req, res, next) {
