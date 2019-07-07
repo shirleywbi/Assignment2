@@ -3,7 +3,8 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "npm start --prefix client"
+        "start": "npm start --prefix server",
+        "heroku-postbuild": "npm start --prefix client"
     },
     "dependencies": {
         "mongodb": "^3.2.7",
