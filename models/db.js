@@ -1,8 +1,12 @@
 // https://mongodb.github.io/node-mongodb-native/3.0/reference/ecmascriptnext/connecting/
 // Connect to MongoDB
 const MongoClient = require('mongodb').MongoClient;
-// const url = require('../config.js');
-const url = process.env.mongoURL;
+let url;
+try {
+  url = require('../config.js');
+} catch (err) {
+  url = process.env.mongoURL;
+}
 
 module.exports = {
   init,
