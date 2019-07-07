@@ -116,7 +116,7 @@ export const toggleMessage = (name, date, message, id) => {
 export function getMessages() {
 	return async dispatch => {
 		dispatch(fetchMessageRequest());
-		return fetch("http://localhost:9000/messages")
+		return fetch("/messages")
 			.then(handleErrors)
 			.then(res => res.json())
 			.then(res => {
@@ -129,7 +129,7 @@ export function getMessages() {
 
 export function getMessageByName(name) {
 	return async dispatch => {
-		return fetch("http://localhost:9000/messages/"+name)
+		return fetch("/messages/"+name)
 			.then(handleErrors)
 			.then(res => res.json())
 			.then(res => {
@@ -146,7 +146,7 @@ export function postMessage(name, text) {
 		let new_name = getName(name);
 		let date = getCurrDate();
 		let id = getID(date);
-		return fetch("http://localhost:9000/messages/", {
+		return fetch("/messages/", {
 			method: 'post',
 			headers: {
 				'Content-Type': 'application/json'
@@ -171,7 +171,7 @@ export function postEditMessage(name, text, date, id, new_text) {
 	return async dispatch => {
 		let new_date = getCurrDate();
 		let new_entry = new_text === null ? text : new_text;
-		return fetch("http://localhost:9000/messages/"+id, {
+		return fetch("/messages/"+id, {
 			method: 'post',
 			headers: {
 				'Content-Type': 'application/json'
@@ -195,7 +195,7 @@ export function postEditMessage(name, text, date, id, new_text) {
 export function deleteMessage(id) {
 	return async dispatch => {
 		dispatch(fetchMessageRequest());
-		return fetch("http://localhost:9000/messages/"+id, {
+		return fetch("/messages/"+id, {
 			method: 'delete',
 			headers: {
 				'Content-Type': 'application/json'
@@ -213,7 +213,7 @@ export function deleteMessage(id) {
 export function deleteMessages() {
 	return async dispatch => {
 		dispatch(fetchMessageRequest());
-		return fetch("http://localhost:9000/messages/", {
+		return fetch("/messages/", {
 			method: 'delete'
 		})
 			.then(handleErrors)

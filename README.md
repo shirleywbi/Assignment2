@@ -1,5 +1,6 @@
 # Message Log Website 2.0
 ### *Tech Stack: React, Redux, JSX, CSS, Express, MongoDB*
+https://sbi-postings.herokuapp.com/
 - Add: Logs the message entered into the text area in the message board
 - Clear: Clears the message in the text area
 - Clear All: Removes all items on message board
@@ -30,6 +31,9 @@ https://mongodb.github.io/node-mongodb-native/3.0/reference/ecmascriptnext/conne
 How to Reuse MongoDB Connection:
 https://stackoverflow.com/questions/24621940/how-to-properly-reuse-connection-to-mongodb-across-nodejs-application-and-module
 
+Deploying to Heroku:
+https://coursework.vschool.io/deploying-mern-with-heroku/
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -38,10 +42,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `npm start`
+### `cd client && npm start`
 
 Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:9000](http://localhost:9000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
