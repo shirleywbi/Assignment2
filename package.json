@@ -6,7 +6,8 @@
         "start": "npm start --prefix client"
     },
     "dependencies": {
-        "mongodb": "^3.2.7"
+        "mongodb": "^3.2.7",
+        "react-scripts": "3.0.1"
     },
     "engines": {
         "node": "10.15.0"
